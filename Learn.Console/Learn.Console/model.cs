@@ -13,12 +13,12 @@ public class StudentsContext : DbContext
     //     var path = Environment.GetFolderPath(folder);
     //     DbPath = System.IO.Path.Join(path, "mydatabase.db");
     // }
-    public StudentsContext() 
-    {
-    }
+    // public StudentsContext() 
+    // {
+    // }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql(@"Host=localhost;Username=mylogin;Password=mypass;Database=mydatabase");
+        => optionsBuilder.UseNpgsql(@"Host=localhost;Username=postgres;Password=pwd;Database=database");
     // protected override void OnConfiguring(DbContextOptionsBuilder options)
     //     => options.UseNpgsql($"Data Source={DbPath}");
 }
