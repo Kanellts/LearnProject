@@ -1,0 +1,44 @@
+
+
+
+using System;
+using System.Linq;
+using Npgsql;
+
+using var db = new StudentsContext();
+
+// Note: This sample requires the database to be created before running.
+Console.WriteLine($"Database path: {db.DbPath}.");
+
+// Create
+Console.WriteLine("Inserting a new student");
+db.Add(new Student(1,"Jon Smith",20));
+
+db.SaveChanges();
+
+// // Read
+// Console.WriteLine("Querying for a blog");
+// var blog = db.Blogs
+//     .OrderBy(b => b.BlogId)
+//     .First();
+
+// Update
+// Console.WriteLine("Updating the blog and adding a post");
+// blog.Url = "https://devblogs.microsoft.com/dotnet";
+// blog.Posts.Add(
+//     new Post { Title = "Hello World", Content = "I wrote an app using EF Core!" });
+// db.SaveChanges();
+
+// Delete
+Console.WriteLine("Delete a student");
+// db.Remove(Student);
+// db.SaveChanges();
+// using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM students", connection);
+
+//         using NpgsqlDataReader reader = cmd.ExecuteReader();
+
+//         while (reader.Read())
+//         {
+//             Console.WriteLine(reader["column_name"]);
+//             // Use the fetched results
+//         }
