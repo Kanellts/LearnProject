@@ -3,7 +3,7 @@
 ## How to run Learn.Console
 
 ### 1. The detailed method
-a) Open the terminal in the projects folder.  
+a) Open the terminal in the project's folder.  
 b) run ___docker run --name my-db -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=Learn -d -p 5432:5432 postgres___ to initialize the PostgreSQL database inside a docker container.  
 c) run ___docker ps___ to check if you have succesfully created the database.  
 d) run ___dotnet ef migrations add InitialCreate___ to initialize the migration file with the first migration.  
@@ -13,7 +13,7 @@ g) run ___dontet run___ to execute the Program.cs
 
 ### 2. Using Makefile
 
-Simply run ___make___ inside a terminal on the project folder.
+Simply run ___make___ inside a terminal on the project's folder.
 
 
 ## How to test the PostgreSQL Database
