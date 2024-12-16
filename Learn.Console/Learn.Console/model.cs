@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-
+namespace Learn.Console;
 public class StudentsContext : DbContext 
 {
-    private const string connectionString = "Host=localhost; Port=5432; Database=my-db; Username=postgres; Password=mysecretpassword";
+    private const string connectionString = "Host=localhost; Port=5432; Database=Learn; Username=postgres; Password=mysecretpassword";
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         => optionsBuilder.UseNpgsql(connectionString)
         .UseSeeding((context,_) => 
@@ -20,18 +20,18 @@ public class StudentsContext : DbContext
                 context.Set<Student>().Add(new Student {Id = 3, Name = "Jane Doe", Age = 21});
                 context.SaveChanges();
             }
-        }//)
-        // .UseAsyncSeeding(async (context,_,CancellationToken) => 
-        // {
-        //     var initialSeeding = await context.Set<Student>().FirstOrDefaultAsync(b => b.Id == 0, cancellationToken);
-        //     if(initialSeeding == null) 
-        //     {
-        //         context.Set<Student>().Add(new Student {Id = 1, Name = "Jon Smith", Age = 22});
-        //         context.Set<Student>().Add(new Student {Id = 2, Name = "Veronica Smith", Age = 19});
-        //         context.Set<Student>().Add(new Student {Id = 3, Name = "Jane Doe", Age = 21});
-        //         await context.SaveChanges();
-        //     }
-        // }
+        })
+        .UseAsyncSeeding(async(context,_,cancellationToken) => 
+        {
+            var initialSeeding = await context.Set<Student>().FirstOrDefaultAsync(b => b.Id == 0, cancellationToken);
+            if(initialSeeding == null) 
+            {
+                context.Set<Student>().Add(new Student {Id = 1, Name = "Jon Smith", Age = 22});
+                context.Set<Student>().Add(new Student {Id = 2, Name = "Veronica Smith", Age = 19});
+                context.Set<Student>().Add(new Student {Id = 3, Name = "Jane Doe", Age = 21});
+                await context.SaveChangesAsync(cancellationToken);
+            }
+        }
         );
 
     public DbSet<Student> Students { get; set; }

@@ -37,7 +37,7 @@ namespace Learn.Console.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 #pragma warning restore 612, 618
         }
