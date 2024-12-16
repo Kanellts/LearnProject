@@ -2,7 +2,6 @@
 using System;
 using System.Linq;
 
-// namespace Learn.Console;
 class Program
 {
     static void Main(string[] args)

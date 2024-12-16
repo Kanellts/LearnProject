@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Learn.Console.Migrations
 {
     [DbContext(typeof(StudentsContext))]
-    [Migration("20241216081313_InitialSeeding")]
-    partial class InitialSeeding
+    [Migration("20241216082608_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
