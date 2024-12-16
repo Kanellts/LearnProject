@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Learn.Console.Migrations
 {
     [DbContext(typeof(StudentsContext))]
-    [Migration("20241215155039_InitialCreate")]
+    [Migration("20241216065239_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -31,10 +31,10 @@ namespace Learn.Console.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("age")
+                    b.Property<int>("Age")
                         .HasColumnType("integer");
 
-                    b.Property<string>("name")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
