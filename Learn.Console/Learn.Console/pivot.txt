@@ -67,3 +67,33 @@ Console.WriteLine("Delete a student");
         //     // Use the fetched results
         // }
     }
+
+public partial class InitialMigration : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+      
+    }
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "Student");
+    }
+}
+
+public partial class InitialMigration : Migration
+{
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+     
+        migrationBuilder.Sql(@"CREATE PROCEDURE MyCustomProcedure
+                               AS
+                               SELECT * FROM Student");
+    }
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "Student");
+        migrationBuilder.Sql(@"DROP PROCEDURE MyCustomProcedure");
+    }
+}

@@ -12,7 +12,11 @@ class Program
 
         readStudent();
         // updateStudent();
-        readStudent();
+        // Console.WriteLine("After the update:");
+
+        // deleteStudent();
+        // Console.WriteLine("After removing:");
+        // readStudent();
 
         Console.WriteLine("Press any key to continue");
         Console.ReadKey();
@@ -42,10 +46,30 @@ class Program
             List<Student> students = db.Students.ToList();
             foreach(Student s in students)
             {
-                Console.WriteLine("{0} {1}",s.Id,s.Name);
+                Console.WriteLine("{0} {1} {2}",s.Id,s.Name,s.Age);
             }
         }
         return;
     }
 
+    static void updateStudent() 
+    {
+        using (var db = new StudentsContext())
+        {
+            Student student = db.Students.Find(1);
+            student.Name = "Veronica Smith";
+            db.SaveChanges();
+        }
+        return;
+    }
+
+    static void deleteStudent()
+    {
+        using (var db = new StudentsContext())
+        {
+            Student student = db.Students.Find(2);
+            db.Students.Remove(student);
+            db.SaveChanges();
+        }
+    }
 }
