@@ -13,7 +13,7 @@ g) run ___dontet run___ to execute the Program.cs
 
 ### 2. Using Makefile
 
-Simply run ___make___ inside the terminal on the project folder.
+Simply run ___make___ inside a terminal on the project folder.
 
 
 ## How to test the PostgreSQL Database
