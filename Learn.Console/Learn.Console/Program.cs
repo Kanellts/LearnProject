@@ -7,7 +7,7 @@ class Program
 {
     static void Main()
     {
-        string connectionString = "Host=localhost;Port=5432;Database=database;User Id=postgres;Password=pwd;";
+        string connectionString = "Host=localhost;Port=5432:5432;Database=database;User Id=postgres;Password=pwd;";
 
         using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
         connection.Open();
