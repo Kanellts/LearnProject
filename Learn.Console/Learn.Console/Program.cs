@@ -1,4 +1,7 @@
-﻿using Npgsql;
+﻿using Learn.Console.DataAccess;
+using Learn.Console.DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using System;
 using System.Linq;
 
@@ -8,7 +11,10 @@ class Program
     static void Main(string[] args)
     {
         System.Console.WriteLine("Hello World");
-        
+        using (var db = new StudentsContext())
+        {
+            db.Database.Migrate();
+        }
         readStudent();
 
         System.Console.WriteLine("Press any key to continue");

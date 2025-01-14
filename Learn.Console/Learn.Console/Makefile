@@ -1,2 +1,0 @@
-initializeDatabase: 
-	echo "\nInitialiazing the database in docker\n" && docker run --name my-db -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_DB=Learn -d -p 5432:5432 postgres && echo "\nNow add initial migration\n" && dotnet ef migrations add InitialCreate && echo "\nMake migrations script\n" && dotnet ef migrations script -o ./script.sql -i && echo "\nUpdate the database\n" && dotnet ef database update && echo "\nRun the program\n" && dotnet run

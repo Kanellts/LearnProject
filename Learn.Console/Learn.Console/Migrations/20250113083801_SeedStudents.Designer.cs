@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Learn.Console.Migrations
 {
     [DbContext(typeof(StudentsContext))]
-    [Migration("20241222224517_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250113083801_SeedStudents")]
+    partial class SeedStudents
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace Learn.Console.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Learn.Console.Student", b =>
+            modelBuilder.Entity("Learn.Console.DataAccess.Models.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
