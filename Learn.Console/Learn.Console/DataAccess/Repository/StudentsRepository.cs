@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learn.Console.DataAccess.Repository
 {
-    public class StudentRepository : IStudentsRepository
+    public class StudentRepository : IStudentsRepository, IDisposable
     {
         // private readonly StudentsContext _context;
         // public StudentRepository(StudentsContext context)
@@ -26,22 +26,35 @@ namespace Learn.Console.DataAccess.Repository
         public async Task CreateAsync(Student student) {
             using (var context = new StudentsContext()) 
             {
-                var students = await context.Students.AddAsync(student);
-                // context.SaveChangesAsync();
+                var checkExistingEntries = await context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
+                if(checkExistingEntries == null)
+                {
+                    await context.Students.AddAsync(student);
+                    await context.SaveChangesAsync();
+                }
+                else 
+                {
+                    System.Console.WriteLine("Entry already in db");
+                }
             }
         }
-        public async Task UpdateAsync(int studentId, Student student) {
+        public async Task UpdateAsync(Student student) {
             using (var context = new StudentsContext()) 
             {
-                var studentToChange = await context.Students.FirstOrDefaultAsync(x => x.Id == studentId);
+                // context.Entry(student).State = EntityState.Modified;
+                var studentToChange = await context.Students.FirstOrDefaultAsync(x => x.Id == student.Id);
 
                 if(studentToChange != null)
                 {
-                    studentToChange.Id = student.Id;
                     studentToChange.Name = student.Name;
                     studentToChange.Age = student.Age;
-                    // context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
                 }
+                else 
+                {
+                    System.Console.WriteLine("No entry updated");
+                }
+                await context.SaveChangesAsync();
             }
         }
         public async Task DeleteAsync(int studentId) {
@@ -52,11 +65,20 @@ namespace Learn.Console.DataAccess.Repository
                 if(studentToBeDeleted != null)
                 {
                     context.Remove(studentToBeDeleted);
-                    // context.SaveChangesAsync();
+                    await context.SaveChangesAsync();
+                    System.Console.WriteLine("We have deleted student 4");
+                }
+                else 
+                {
+                    System.Console.WriteLine("Student for deletion not found");
                 }
             }
         }
 
+        public void Dispose()
+        {
+
+        }
 
     }
 }

@@ -8,7 +8,7 @@ namespace Learn.Console.DataAccess.Repository
     {
         Task<List<Student>> GetAllAsync();
         Task CreateAsync(Student student);
-        Task UpdateAsync(int studentId, Student student);
+        Task UpdateAsync(Student student);
         Task DeleteAsync(int studentId);
     }
 }
