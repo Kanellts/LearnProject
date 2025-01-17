@@ -1,6 +1,4 @@
 using Learn.Console.DataAccess.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
 
 namespace Learn.Console.Repository
 {
