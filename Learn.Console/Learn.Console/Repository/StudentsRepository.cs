@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Learn.Console.DataAccess;
 using Learn.Console.DataAccess.Models;
-using Learn.Console.DataAccess.Repository;
+using Learn.Console.Repository;
 using Microsoft.EntityFrameworkCore;
 
-namespace Learn.Console.DataAccess.Repository
+namespace Learn.Console.Repository
 {
     public class StudentRepository : IStudentsRepository, IDisposable
     {

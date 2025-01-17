@@ -2,7 +2,7 @@ using Learn.Console.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
-namespace Learn.Console.DataAccess.Repository
+namespace Learn.Console.Repository
 {
     public interface IStudentsRepository
     {
