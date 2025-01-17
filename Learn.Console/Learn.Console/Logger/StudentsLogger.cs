@@ -25,7 +25,7 @@ namespace Learn.Console.Logger
             logger.LogInformation(forLoop(studentsList));
         }
 
-        
+      
         //If you use this, comment out the aforementioned methods
         // 
         // public void LogStudents(List<Student> studentsList) 
