@@ -1,3 +1,5 @@
+- Branch dev4 merged with main, project now uses repository pattern and has a logger
+- CHANGELOG.md added
 - Exercise 4 is done
 - Async/Await bug fixed. Everything is tested and ready. I have added an extra function for I/O manipulation. Changes in README.md remaining and we are ready
 - Logger added. Async/await not working properly yet.
