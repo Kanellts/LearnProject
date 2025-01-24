@@ -1,8 +1,8 @@
-using Learn.Console.DataAccess;
-using Learn.Console.DataAccess.Models;
+using Learn.Core.DataAccess;
+using Learn.Core.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Learn.Console.Repository
+namespace Learn.Core.Repository
 {
     public class StudentRepository : IStudentsRepository, IDisposable
     {

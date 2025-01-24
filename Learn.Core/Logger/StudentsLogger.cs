@@ -1,10 +1,10 @@
-using Learn.Console.DataAccess.Models;
+using Learn.Core.DataAccess.Models;
 using Microsoft.Extensions.Logging;
 
 
-namespace Learn.Console.Logger 
+namespace Learn.Core.Logger 
 {
-    class StudentLogger 
+    public class StudentLogger 
     {
         //This function is used only for output manipulation. The original LogStudents 
         //is commented out below, and it was abandonded in order to not have

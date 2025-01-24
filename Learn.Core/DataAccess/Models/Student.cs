@@ -1,4 +1,4 @@
-﻿namespace Learn.Console.DataAccess.Models
+﻿namespace Learn.Core.DataAccess.Models
 {
     public class Student
     {

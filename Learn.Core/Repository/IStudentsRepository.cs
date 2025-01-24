@@ -1,6 +1,6 @@
-using Learn.Console.DataAccess.Models;
+using Learn.Core.DataAccess.Models;
 
-namespace Learn.Console.Repository
+namespace Learn.Core.Repository
 {
     public interface IStudentsRepository
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Learn.Console.Migrations
+namespace Learn.Core.Migrations
 {
     public partial class SeedStudents : Migration
     {

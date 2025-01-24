@@ -1,7 +1,7 @@
-﻿using Learn.Console.DataAccess;
-using Learn.Console.DataAccess.Models;
-using Learn.Console.Repository;
-using Learn.Console.Logger;
+﻿using Learn.Core.DataAccess;
+using Learn.Core.DataAccess.Models;
+using Learn.Core.Repository;
+using Learn.Core.Logger;
 using Microsoft.EntityFrameworkCore;
 
 namespace Learn.Console;
