@@ -2,7 +2,7 @@
 
 **An exercise for learning how to build a console application with EF Core!**
 
-###What have I learned so far?
+### What have I learned so far?
 
 
 ***In exercise 0*** (Introduction to Git, Github and Docker Compose), I learned the basics of git and github and how to set up a docker container.

@@ -1,3 +1,4 @@
+- I have updated README properly and checked business logic. Exercise 5 is ready, onto the next one.
 - I have created a ILogger class for the DI logic, project checked for SOC and splited correctly into the core and the console layers, DI framework implemented in program.cs, CHANGELOG.md updated. I still have to doublecheck that business logic is completely correct and restructure some folders for better code managment.
 - gitignore updated
 - First implementation of core and console layers. App runs again after debugging. Folder structure corrected.
