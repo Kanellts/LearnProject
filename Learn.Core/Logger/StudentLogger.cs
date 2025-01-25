@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Learn.Core.Logger 
 {
-    public class StudentLogger 
+    public class StudentLogger : IStudentLogger
     {
         //This function is used only for output manipulation. The original LogStudents 
         //is commented out below, and it was abandonded in order to not have

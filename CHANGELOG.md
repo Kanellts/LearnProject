@@ -1,3 +1,7 @@
+- gitignore updated
+- First implementation of core and console layers. App runs again after debugging. Folder structure corrected.
+- CHANGELOG.md moved in a proper place
+- CHANGELOG.md updated
 - Branch dev4 merged with main, project now uses repository pattern and has a logger
 - CHANGELOG.md added
 - Exercise 4 is done

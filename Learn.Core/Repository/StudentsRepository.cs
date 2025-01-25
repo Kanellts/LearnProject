@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Learn.Core.Repository
 {
-    public class StudentRepository : IStudentsRepository, IDisposable
+    public class StudentRepository : IStudentsRepository
     {
         public async Task<List<Student>> GetAllAsync() {
             using (var context = new StudentsContext()) 
@@ -33,12 +33,6 @@ namespace Learn.Core.Repository
                 await context.Students.Where(std => std.Id == studentId).ExecuteDeleteAsync(); 
             }
         }
-
-        public void Dispose()
-        {
-
-        }
-
     }
 }
 
