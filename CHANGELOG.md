@@ -1,3 +1,4 @@
+- Exercise 6 is done, updates in README remaining
 - Final tweaks remaining 2
 - Final tweaks remaining
 - Command Line Parser is now working, small modifications required for better formated output
