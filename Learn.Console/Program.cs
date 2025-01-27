@@ -70,21 +70,34 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
         await studentsContext.Database.MigrateAsync();
 
         await Parser.Default.ParseArguments<StudentOperations>(args)
-            .WithParsedAsync(async options =>
-            {
-                switch (options.dbOperation.ToLower())
-                {
-                    case "create":
-                        await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
-                        break;
-                    case "update":
-                        await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
-                        break;
-                    case "get":
-                        studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
-                        break;
-                    default:
-                        break;
+            .WithParsedAsync(async options => {
+            // {
+            //     switch (options.dbOperation.ToLower())
+            //     {
+            //         case "create":
+            //             await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
+            //             break;
+            //         case "update":
+            //             await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
+            //             break;
+            //         case "get":
+            //             studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
+            //             break;
+            //         default:
+            //             break;
+            //     }
+            // });
+             if(options.addStudent){
+                    await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
+                }
+                else if(options.updateStudent){
+                    await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
+                }
+                else if(options.getAllStudents) {
+                    studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
+                }
+                else {
+                    System.Console.WriteLine($"Wrong option {options} provided");
                 }
             });
     }
@@ -129,3 +142,21 @@ public sealed class Worker(IStudentLogger studentLogger, IStudentsRepository stu
         // System.Console.ReadKey();
     }
 }
+
+
+/*
+ {
+                if(options.addStudent){
+                    await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
+                }
+                else if(options.updateStudent){
+                    await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
+                }
+                else if(options.getAllStudents) {
+                    studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
+                }
+                else {
+                    System.Console.WriteLine($"Wrong option {options} provided");
+                }
+            });
+*/
