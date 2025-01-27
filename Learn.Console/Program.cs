@@ -41,31 +41,50 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        System.Console.WriteLine("Hello World");
+        System.Console.WriteLine("Parser initialized\n");
         await studentsContext.Database.MigrateAsync();
 
         await Parser.Default.ParseArguments<StudentOperations>(args)
-            .WithParsedAsync(async options => {
-             if(options.addStudent){
+            .WithParsedAsync(async options =>
+            {
+                if (options.addStudent)
+                {
                     await studentsService.CreateStudentAsync(new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge });
                 }
-                else if(options.updateStudent){
+                else if (options.updateStudent)
+                {
                     await studentsService.UpdateStudentAsync(new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge });
                 }
-                else if(options.getAllStudents) {
+                else if (options.getAllStudents)
+                {
                     studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
                 }
-                else {
-                    Worker(studentLogger,studentsRepository, studentsContext);
+                else //Default mode option
+                {
+                    //Provide maxId to Worker
+                    System.Console.Write($"\nThe option {options} is not valid for CRU operation." +
+                                            "\nDefault behavior of the app will be initialized, if so," +
+                                            "every student with Id greater than or equal to 4, is going to be removed from the database.\n" +
+                                            "Would you like to reset the database and apply the default app behavior? y/n: ");
+                    char ch = System.Console.ReadKey().KeyChar;
+                    if(ch == 'y') {
+                        System.Console.WriteLine("\n\nDefault application initialized, " +
+                                                 "database is now reseted.\n");
+                        int maxId = studentsContext.Students.Max(s => s.Id);
+                        Worker(maxId, studentLogger, studentsRepository, studentsContext);
+                    }
+                    else {
+                        System.Console.WriteLine("\nFeel free to try again. \nGoodbye");
+                    }
                 }
             });
     }
 
-public async void Worker(IStudentLogger studentLogger, IStudentsRepository studentsRepository, StudentsContext studentsContext)
-{
-    // protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    // {
-        for(int i = 4; i <= 10; i++) {
+    public async void Worker(int maxId, IStudentLogger studentLogger, IStudentsRepository studentsRepository, StudentsContext studentsContext)
+    {
+        //Deletes every change previously done by the command line parser
+        for (int i = 4; i <= maxId; i++)
+        {
             await studentsRepository.DeleteAsync(i);
         }
         System.Console.WriteLine("Hello World");

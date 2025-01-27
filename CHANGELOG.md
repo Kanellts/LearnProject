@@ -1,3 +1,8 @@
+- Final tweaks remaining 2
+- Final tweaks remaining
+- Command Line Parser is now working, small modifications required for better formated output
+- CHANGELOG updated
+- Upload everything to git
 - appsettings.json configured, DI framework updated, command line parser first implementation, stil needs some tweaking
 - appsetting.json added, it still needs configuration
 - README corrected
