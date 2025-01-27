@@ -8,9 +8,7 @@ using Learn.Core.DataAccess.Models;
 using Learn.Core.Repository;
 using Learn.Core.Logger;
 using Learn.Service;
-using System.Reflection.Metadata;
-using System.Diagnostics.Metrics;
-using System.Security.Cryptography;
+
 
 namespace Learn.Console;
 class Program
@@ -28,32 +26,9 @@ class Program
                 services.AddSingleton<IStudentsRepository, StudentRepository>();
                 services.AddSingleton<IStudentsService, StudentsService>();
                 services.AddSingleton<IStudentLogger, StudentLogger>();
-                if(args == null)
-                {
-                    services.AddHostedService<Worker>();
-                }
-                else {
-                    services.AddSingleton(args);
-                    services.AddHostedService<ExecuteStudentServicesAsync>();
-                }
+                services.AddSingleton(args);
+                services.AddHostedService<ExecuteStudentServicesAsync>();
             });
-
-        // using (var db = new StudentsContext())
-        // {
-        // {
-        //     if(!string.IsNullOrWhiteSpace(options.outputPath)) {
-        //         var filePath = Path.Combine(options.outputPath, "test.txt");
-        //         await File.WriteAllTextAsync(filePath, "This is just a test");
-        //         System.Console.WriteLine($"The file {filePath} has been successfully written.");
-        //     }
-        //     else if(!string.IsNullOrWhiteSpace(options.newStudentInfo)) {
-        //         System.Console.WriteLine("Student create was given with values: " + options.newStudentInfo);
-        //     }
-        //     else {
-        //         System.Console.WriteLine("No argument parsed");
-        //     }
-
-        // });
 
         IHost host = builder.Build();
         await host.RunAsync();
@@ -62,7 +37,7 @@ class Program
 
 }
 
-public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger studentLogger, IStudentsService studentsService, StudentsContext studentsContext) : BackgroundService
+public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger studentLogger, IStudentsService studentsService, StudentsContext studentsContext, IStudentsRepository studentsRepository) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -71,47 +46,30 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
 
         await Parser.Default.ParseArguments<StudentOperations>(args)
             .WithParsedAsync(async options => {
-            // {
-            //     switch (options.dbOperation.ToLower())
-            //     {
-            //         case "create":
-            //             await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
-            //             break;
-            //         case "update":
-            //             await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
-            //             break;
-            //         case "get":
-            //             studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
-            //             break;
-            //         default:
-            //             break;
-            //     }
-            // });
              if(options.addStudent){
-                    await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
+                    await studentsService.CreateStudentAsync(new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge });
                 }
                 else if(options.updateStudent){
-                    await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
+                    await studentsService.UpdateStudentAsync(new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge });
                 }
                 else if(options.getAllStudents) {
                     studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
                 }
                 else {
-                    System.Console.WriteLine($"Wrong option {options} provided");
+                    Worker(studentLogger,studentsRepository, studentsContext);
                 }
             });
     }
-}
 
-public sealed class Worker(IStudentLogger studentLogger, IStudentsRepository studentsRepository, StudentsContext studentsContext) : BackgroundService
+public async void Worker(IStudentLogger studentLogger, IStudentsRepository studentsRepository, StudentsContext studentsContext)
 {
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-    {
+    // protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    // {
+        for(int i = 4; i <= 10; i++) {
+            await studentsRepository.DeleteAsync(i);
+        }
         System.Console.WriteLine("Hello World");
-        // using (var db = new StudentsContext())
-        // {
         await studentsContext.Database.MigrateAsync();
-        // }
 
         System.Console.WriteLine("\nBefore the add");
 
@@ -137,26 +95,6 @@ public sealed class Worker(IStudentLogger studentLogger, IStudentsRepository stu
         //Check if we succeded
         System.Console.WriteLine("\nAfter the Delete");
         studentLogger.LogStudents(await studentsRepository.GetAllAsync());
-
-        // System.Console.WriteLine("Press any key to continue");
-        // System.Console.ReadKey();
     }
 }
-
-
-/*
- {
-                if(options.addStudent){
-                    await studentsService.CreateStudentAsync((new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge }));
-                }
-                else if(options.updateStudent){
-                    await studentsService.UpdateStudentAsync((new Student { Id = options.newStudentId, Name = options.newStudentName, Age = options.newStudentAge }));
-                }
-                else if(options.getAllStudents) {
-                    studentLogger.LogStudents(await studentsService.GetAllStudentsAsync());
-                }
-                else {
-                    System.Console.WriteLine($"Wrong option {options} provided");
-                }
-            });
-*/
+// }
