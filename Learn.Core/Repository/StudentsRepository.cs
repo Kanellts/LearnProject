@@ -6,32 +6,31 @@ namespace Learn.Core.Repository
 {
     public class StudentRepository : IStudentsRepository
     {
+        private readonly StudentsContext _context;
+        public StudentRepository(StudentsContext context) {
+            _context = context;
+        }
         public async Task<List<Student>> GetAllAsync() {
-            using (var context = new StudentsContext()) 
-            {
-                return await context.Students.AsNoTracking().ToListAsync();
-            }
+            return await _context.Students.AsNoTracking().ToListAsync();
         }
 
         public async Task CreateAsync(Student student) {
-            using (var context = new StudentsContext()) 
-            {
-                context.Students.Add(student);
-                await context.SaveChangesAsync();
-            }
+            _context.Students.Add(student);
+            await _context.SaveChangesAsync();
         }
         public async Task UpdateAsync(Student student) {
-            using (var context = new StudentsContext()) 
+            //Added due to tracking error, nothing else seemed to work
+            var trackedEntity = _context.Students.FirstOrDefault(s => s.Id == student.Id);
+            if (trackedEntity != null)
             {
-                context.Students.Update(student);
-                await context.SaveChangesAsync();
+                _context.Entry(trackedEntity).State = EntityState.Detached;
             }
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
         }
+
         public async Task DeleteAsync(int studentId) {
-            using (var context = new StudentsContext()) 
-            {
-                await context.Students.Where(std => std.Id == studentId).ExecuteDeleteAsync(); 
-            }
+            await _context.Students.Where(std => std.Id == studentId).ExecuteDeleteAsync(); 
         }
     }
 }

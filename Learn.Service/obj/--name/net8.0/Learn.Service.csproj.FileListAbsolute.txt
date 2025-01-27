@@ -1,0 +1,16 @@
+/Users/kanellostsitouras/LearnProject/Learn.Service/bin/--name/net8.0/Learn.Service.deps.json
+/Users/kanellostsitouras/LearnProject/Learn.Service/bin/--name/net8.0/Learn.Service.dll
+/Users/kanellostsitouras/LearnProject/Learn.Service/bin/--name/net8.0/Learn.Service.pdb
+/Users/kanellostsitouras/LearnProject/Learn.Service/bin/--name/net8.0/Learn.Core.dll
+/Users/kanellostsitouras/LearnProject/Learn.Service/bin/--name/net8.0/Learn.Core.pdb
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.csproj.AssemblyReference.cache
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.AssemblyInfoInputs.cache
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.AssemblyInfo.cs
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.csproj.CoreCompileInputs.cache
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.sourcelink.json
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Se.05863292.Up2Date
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.dll
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/refint/Learn.Service.dll
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/Learn.Service.pdb
+/Users/kanellostsitouras/LearnProject/Learn.Service/obj/--name/net8.0/ref/Learn.Service.dll
