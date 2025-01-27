@@ -1,3 +1,4 @@
+- README.md updated after exercise 6
 - Exercise 6 is done, updates in README remaining
 - Final tweaks remaining 2
 - Final tweaks remaining
