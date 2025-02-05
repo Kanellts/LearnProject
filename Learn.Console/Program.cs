@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using CommandLine;
 using Learn.Core.DataAccess;
 using Learn.Core.DataAccess.Models;
-using Learn.Core.Repository;
+// using Learn.Core.Repository;
 using Learn.Core.Logger;
 using Learn.Service;
 
@@ -23,7 +23,7 @@ class Program
             .ConfigureServices((context, services) =>
             {
                 services.AddDbContext<StudentsContext>(ServiceLifetime.Scoped);
-                services.AddSingleton<IStudentsRepository, StudentRepository>();
+                // services.AddSingleton<IStudentsRepository, StudentRepository>();
                 services.AddSingleton<IStudentsService, StudentsService>();
                 services.AddSingleton<IStudentLogger, StudentLogger>();
                 services.AddSingleton(args);
@@ -37,7 +37,7 @@ class Program
 
 }
 
-public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger studentLogger, IStudentsService studentsService, StudentsContext studentsContext, IStudentsRepository studentsRepository) : BackgroundService
+public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger studentLogger, IStudentsService studentsService, StudentsContext studentsContext) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -49,7 +49,7 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
             {
                 if (options.addStudent)
                 {
-                    await studentsService.CreateStudentAsync(new Student { Id = 0, Name = options.newStudentName, Age = options.newStudentAge });
+                    await studentsService.CreateStudentAsync(new Student { Name = options.newStudentName, Age = options.newStudentAge });
                 }
                 else if (options.updateStudent)
                 {
@@ -61,6 +61,14 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
                 }
                 else //Default mode option
                 {
+                    System.Console.Write("\nThis option is not valid.\n---- HELP ----\n" +
+                                          "Use --create or --update or --get as follows:\n" +
+                                          "Example 1: Add a new entry \"John Doe, 20 years old\" to the database with: " +
+                                          "--create --name \"John Doe\" -- age 20\n" +
+                                          "Example 2: Update a student in the database with: " +
+                                          "--update --id studentId --name \"newStudentName\" --age newStudentAge\n" +
+                                          "Example 3: Get all students in the database with: --get\n");
+                    /*
                     //Provide maxId to Worker
                     System.Console.Write($"\nThe option {options} is not valid for CRU operation." +
                                             "\nDefault behavior of the app will be initialized, if so," +
@@ -76,10 +84,11 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
                     else {
                         System.Console.WriteLine("\nFeel free to try again. \nGoodbye");
                     }
+                    */
                 }
             });
     }
-
+/*
     public async void Worker(int maxId, IStudentLogger studentLogger, IStudentsRepository studentsRepository, StudentsContext studentsContext)
     {
         //Deletes every change previously done by the command line parser
@@ -115,5 +124,5 @@ public sealed class ExecuteStudentServicesAsync(string[] args, IStudentLogger st
         System.Console.WriteLine("\nAfter the Delete");
         studentLogger.LogStudents(await studentsRepository.GetAllAsync());
     }
+    */
 }
-// }
