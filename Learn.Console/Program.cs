@@ -37,10 +37,10 @@ class Program
 
         var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
         var studentLogger = serviceProvider.GetRequiredService<IStudentLogger>();
-        // var studentsContext = serviceProvider.GetRequiredService<StudentsContext>();
+        var studentsContext = serviceProvider.GetRequiredService<StudentsContext>();
 
         System.Console.WriteLine("Parser initialized\n");
-        // await studentsContext.Database.MigrateAsync();
+        await studentsContext.Database.MigrateAsync();
 
         await Parser.Default.ParseArguments<StudentOperations>(args)
             .WithParsedAsync(async options =>
