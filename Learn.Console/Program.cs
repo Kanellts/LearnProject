@@ -7,6 +7,7 @@ using Learn.Core.DataAccess.Models;
 using Learn.Core.Repository;
 using Learn.Core.Logger;
 using Learn.Core.Services;
+using Microsoft.Extensions.Logging;
 
 namespace Learn.Console;
 
@@ -32,7 +33,8 @@ class Program
             .AddSingleton<IStudentsService, StudentsService>()
             .AddSingleton<IStudentsRepository, StudentRepository>()
             .AddSingleton<IStudentsService, StudentsService>()
-            .AddSingleton<IStudentLogger, StudentLogger>()
+            .AddLogging(configure => configure.AddConsole())  // Add Console Logger
+            .AddSingleton<IStudentLogger, StudentLogger>()  // Registry of student logger
             .BuildServiceProvider();
 
         var studentsService = serviceProvider.GetRequiredService<IStudentsService>();
