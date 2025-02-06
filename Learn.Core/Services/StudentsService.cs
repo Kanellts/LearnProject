@@ -6,10 +6,8 @@ namespace Learn.Core.Services;
 
 public class StudentsService : IStudentsService
 {
-    private readonly StudentsContext _context;
     private readonly IStudentsRepository _repository;
-    public StudentsService(StudentsContext context, IStudentsRepository repository) {
-            _context = context;
+    public StudentsService(IStudentsRepository repository) {
             _repository = repository;
     }
 
