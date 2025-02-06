@@ -11,12 +11,13 @@ namespace Learn.Core.Repository
             _context = context;
         }
         public async Task<List<Student>> GetAllAsync() {
-            return await _context.Students.AsNoTracking().ToListAsync();
+            return await _context.Students.AsNoTracking().OrderBy(s => s.Id).ToListAsync();
         }
 
-        public async Task CreateAsync(Student student) {
+        public async Task<Student> CreateAsync(Student student) {
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
+            return student;
         }
         public async Task UpdateAsync(Student student) {
             //Added due to tracking error, nothing else seemed to work

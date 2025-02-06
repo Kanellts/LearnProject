@@ -12,9 +12,9 @@ public class StudentOperations
   [Option("id", Required = false, HelpText = "The id of the student (required for the update operation)")]
   public int newStudentId { get; set; }
   
-  [Option("name", Required = false, HelpText = "The name of the student (required for create/update operations")]
+  [Option("name", Required = false, HelpText = "The name of the student (required for create/update operations)")]
   public required string newStudentName { get; set; }
   
-  [Option("age", Required = false, HelpText = "The age of the student (required for create/update operations")]
+  [Option("age", Required = false, HelpText = "The age of the student (required for create/update operations)")]
   public int newStudentAge { get; set; }
 }
