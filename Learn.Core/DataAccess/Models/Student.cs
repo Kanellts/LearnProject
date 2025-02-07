@@ -1,4 +1,6 @@
-﻿namespace Learn.Core.DataAccess.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Learn.Core.DataAccess.Models
 {
     public class Student
     {
