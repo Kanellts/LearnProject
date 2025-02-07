@@ -20,12 +20,6 @@ namespace Learn.Core.Repository
             return student;
         }
         public async Task UpdateAsync(Student student) {
-            //Added due to tracking error, nothing else seemed to work
-            // var trackedEntity = _context.Students.FirstOrDefault(s => s.Id == student.Id);
-            // if (trackedEntity != null)
-            // {
-            //     _context.Entry(trackedEntity).State = EntityState.Detached;
-            // }
             _context.Students.Update(student);
             await _context.SaveChangesAsync();
         }

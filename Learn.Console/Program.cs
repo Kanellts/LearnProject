@@ -20,12 +20,6 @@ class Program
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)  // Φορτώνει το αρχείο
             .Build();
 
-        // var services = new ServiceCollection();
-        // .AddSingleton<IStudentsRepository, StudentRepository>();
-        // .AddSingleton<IStudentsService, StudentsService>();
-        // .AddSingleton<IStudentLogger, StudentLogger>();
-
-
         var serviceProvider = new ServiceCollection()
             .AddSingleton<IConfiguration>(configuration)  // Προσθήκη IConfiguration
             .AddDbContext<StudentsContext>(options =>
