@@ -1,3 +1,17 @@
+- Version 6.2 is now ready, we are moving to version 7.0
+- Logger implementation and DI fixed
+- More useless code removed
+- Useless code deleted
+- Migrate corrected
+- Learn.Service deleted
+- Final changes on exercise 6, CHANGELOG update required
+- First changes on exercise 6
+- Revert "Remove background service"
+- Remove background service
+- Remove service project
+- Adding appsettings to the project as content
+- Ignore bin, obj and .vs folders
+- README.md updated
 - README.md updated after exercise 6
 - Exercise 6 is done, updates in README remaining
 - Final tweaks remaining 2
