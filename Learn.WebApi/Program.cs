@@ -17,6 +17,7 @@ var configuration = new ConfigurationBuilder()
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IConfiguration>(configuration);
 builder.Services.AddScoped<IStudentsRepository,StudentRepository>();
 builder.Services.AddScoped<IStudentsService,StudentsService>();
 // builder.Services.AddSingleton<IStudentLogger,StudentLogger>();
@@ -28,6 +29,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateAsyncScope())
+{
+    var studentsContext = scope.ServiceProvider.GetRequiredService<StudentsContext>();
+    await studentsContext.Database.MigrateAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
