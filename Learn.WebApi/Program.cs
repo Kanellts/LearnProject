@@ -17,9 +17,9 @@ var configuration = new ConfigurationBuilder()
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IStudentsService,StudentsService>();
-builder.Services.AddSingleton<IStudentsRepository,StudentRepository>();
-builder.Services.AddSingleton<IStudentLogger,StudentLogger>();
+builder.Services.AddScoped<IStudentsRepository,StudentRepository>();
+builder.Services.AddScoped<IStudentsService,StudentsService>();
+// builder.Services.AddSingleton<IStudentLogger,StudentLogger>();
 builder.Services.AddDbContext<StudentsContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))); // Ρύθμιση DbContext
 
