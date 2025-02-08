@@ -1,5 +1,4 @@
 using Learn.Core.DataAccess.Models;
-using Learn.Core.DataAccess;
 using Learn.Core.Repository;
 
 namespace Learn.Core.Services;

@@ -1,8 +1,5 @@
-using System.Threading.Tasks;
-using Learn.Core.DataAccess;
 using Learn.Core.DataAccess.Models;
 using Learn.Core.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Learn.WebApi.Controllers

@@ -1,8 +1,4 @@
-using Learn.Core;
-using Learn.Core.DataAccess.Models;
 using Learn.Core.DataAccess;
-using Learn.Core.Logger;
-using Learn.Core.Migrations;
 using Learn.Core.Repository;
 using Learn.Core.Services;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +10,12 @@ var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())  // Ορίζει το path όπου βρίσκεται το appsettings.json
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)  // Φορτώνει το αρχείο
             .Build();
-// Add services to the container.
 
+// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddSingleton<IConfiguration>(configuration);
 builder.Services.AddScoped<IStudentsRepository,StudentRepository>();
 builder.Services.AddScoped<IStudentsService,StudentsService>();
-// builder.Services.AddSingleton<IStudentLogger,StudentLogger>();
 builder.Services.AddDbContext<StudentsContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))); // Ρύθμιση DbContext
 

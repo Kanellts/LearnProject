@@ -4,4 +4,6 @@ Learn.Core/bin
 Learn.Console/obj
 Learn.Console/bin
 .vs
-
+Learn.WebApi/obj
+Learn.WebApi/bin
+Learn.WebApi/.vs
