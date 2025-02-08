@@ -30,6 +30,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Database seeding through Migrations
 using (var scope = app.Services.CreateAsyncScope())
 {
     var studentsContext = scope.ServiceProvider.GetRequiredService<StudentsContext>();
