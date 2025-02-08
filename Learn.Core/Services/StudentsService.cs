@@ -16,12 +16,25 @@ public class StudentsService : IStudentsService
         var result = await _repository.CreateAsync(student);
         return result;
     }
+
     public async Task<List<Student>> GetAllStudentsAsync()
     {
         return await _repository.GetAllAsync();
     }
+
+    public async Task<Student> GetStudentByIdAsync(int studentId)
+    {
+        return await _repository.GetByIdAsync(studentId);
+    }
+
     public async Task UpdateStudentAsync(Student student)
     {
         await _repository.UpdateAsync(student);
     }
+
+    public async Task DeleteStudentAsync(int studentId)
+    {
+        await _repository.DeleteAsync(studentId);
+    }
+
 }

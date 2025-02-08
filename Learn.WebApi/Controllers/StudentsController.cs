@@ -24,13 +24,19 @@ namespace Learn.WebApi.Controllers
             return Ok(allStudents);
         }
 
-        // [HttpGet]
-        // public IActionResult getStudentById() 
-        // {
-
-        // }
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> getStudentById(int id) 
+        {
+            var aStudent = await _service.GetStudentByIdAsync(id);
+            if(aStudent == null) 
+            {
+                return NotFound();
+            }
+            return Ok(aStudent);
+        }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IActionResult> AddStudent(AddStudentDTO studentDTO)
         {
             var student = new Student() {
@@ -38,7 +44,28 @@ namespace Learn.WebApi.Controllers
                 Age = studentDTO.Age
             };
             var newStudent = await _service.CreateStudentAsync(student);
-            return Ok(newStudent); 
+            return CreatedAtAction(nameof(getStudentById), new {id = student.Id}, student);
+        }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IActionResult> UpdateStudent(int id, UpdateStudentDTO studentDTO)
+        {
+            var student = new Student() {
+                Id = id,
+                Name = studentDTO.Name,
+                Age = studentDTO.Age
+            };
+            await _service.UpdateStudentAsync(student);
+            return NoContent();
+        }
+        
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<IActionResult> DeleteStudent(int id) 
+        {
+            await _service.DeleteStudentAsync(id);
+            return NoContent();
         }
     }
 }
