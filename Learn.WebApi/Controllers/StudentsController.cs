@@ -11,10 +11,8 @@ namespace Learn.WebApi.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IStudentsService _service;
-        private readonly StudentsContext _context;
-        public StudentsController(IStudentsService service, StudentsContext context) {
+        public StudentsController(IStudentsService service) {
             _service = service;
-            _context = context;
         }
 
         [HttpGet]
@@ -24,11 +22,12 @@ namespace Learn.WebApi.Controllers
             return Ok(allStudents);
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet]
+        [Route("{id:int}")]
         public async Task<IActionResult> getStudentById(int id) 
         {
             var aStudent = await _service.GetStudentByIdAsync(id);
-            if(aStudent == null) 
+            if(aStudent is null) 
             {
                 return NotFound();
             }
@@ -64,8 +63,8 @@ namespace Learn.WebApi.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteStudent(int id) 
         {
-            var student = _context.Students.Find(id);
-            if(student == null) {
+            var student = await _service.GetStudentByIdAsync(id);
+            if(student is null) {
                 return NotFound();
             }
             await _service.DeleteStudentAsync(id);

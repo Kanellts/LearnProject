@@ -1,5 +1,6 @@
 using Learn.Core.DataAccess.Models;
 using Learn.Core.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Learn.Core.Services;
 
@@ -28,19 +29,18 @@ public class StudentsService : IStudentsService
 
     public async Task<Student> UpdateStudentAsync(Student student)
     {
-        // var updatedStudent = _repository.GetByIdAsync(student.Id);
-        // try {
+        var updatedStudent = await _repository.GetByIdAsync(student.Id);
+        
+        if(updatedStudent is not null) {
             return await _repository.UpdateAsync(student);
-        // }
-        // catch {
-        //     if(updatedStudent == null) {
-        //         return nos
-        //     }
-        //     else {
-        //         throw;
-        //     }
-
-        // }
+        }
+        else {
+            // This i think should be displayed with logger through LogError, 
+            // especially for the console app. Then, i must register logger service for the WebApi
+            // too and have the WebApi use logger too.
+            System.Console.WriteLine($"No student with id = {student.Id}, returns null"); 
+            return student;
+        }
     }
 
     public async Task DeleteStudentAsync(int studentId)
