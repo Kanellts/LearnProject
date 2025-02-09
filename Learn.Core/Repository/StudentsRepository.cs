@@ -23,9 +23,10 @@ namespace Learn.Core.Repository
             await _context.SaveChangesAsync();
             return student;
         }
-        public async Task UpdateAsync(Student student) {
+        public async Task<Student> UpdateAsync(Student student) {
             _context.Students.Update(student);
             await _context.SaveChangesAsync();
+            return student;
         }
 
         public async Task DeleteAsync(int studentId) {

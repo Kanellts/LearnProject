@@ -26,9 +26,21 @@ public class StudentsService : IStudentsService
         return await _repository.GetByIdAsync(studentId);
     }
 
-    public async Task UpdateStudentAsync(Student student)
+    public async Task<Student> UpdateStudentAsync(Student student)
     {
-        await _repository.UpdateAsync(student);
+        // var updatedStudent = _repository.GetByIdAsync(student.Id);
+        // try {
+            return await _repository.UpdateAsync(student);
+        // }
+        // catch {
+        //     if(updatedStudent == null) {
+        //         return nos
+        //     }
+        //     else {
+        //         throw;
+        //     }
+
+        // }
     }
 
     public async Task DeleteStudentAsync(int studentId)

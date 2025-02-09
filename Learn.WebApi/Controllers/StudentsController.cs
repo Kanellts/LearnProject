@@ -1,3 +1,4 @@
+using Learn.Core.DataAccess;
 using Learn.Core.DataAccess.Models;
 using Learn.Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,10 @@ namespace Learn.WebApi.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IStudentsService _service;
-        public StudentsController(IStudentsService service) {
+        private readonly StudentsContext _context;
+        public StudentsController(IStudentsService service, StudentsContext context) {
             _service = service;
+            _context = context;
         }
 
         [HttpGet]
@@ -61,6 +64,10 @@ namespace Learn.WebApi.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> DeleteStudent(int id) 
         {
+            var student = _context.Students.Find(id);
+            if(student == null) {
+                return NotFound();
+            }
             await _service.DeleteStudentAsync(id);
             return NoContent();
         }

@@ -5,9 +5,7 @@ namespace Learn.Core.Services {
         Task<Student> CreateStudentAsync(Student student);
         Task<List<Student>> GetAllStudentsAsync();
         Task<Student> GetStudentByIdAsync(int studentId);
-
-        Task UpdateStudentAsync(Student student);
+        Task<Student> UpdateStudentAsync(Student student);
         Task DeleteStudentAsync(int studentId);
-
     }
 }

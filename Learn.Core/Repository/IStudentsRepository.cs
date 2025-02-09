@@ -7,7 +7,7 @@ namespace Learn.Core.Repository
         Task<List<Student>> GetAllAsync();
         Task<Student> GetByIdAsync(int studentId);
         Task<Student> CreateAsync(Student student);
-        Task UpdateAsync(Student student);
+        Task<Student> UpdateAsync(Student student);
         Task DeleteAsync(int studentId);
     }
 }
