@@ -1,3 +1,4 @@
+- Version 7.6, exercise 7 is now completed, checking required
 - gitignore updated
 - Version 7.5, postman errors handled, postman collection remaining
 - Update null error handled, Swagger and postman remaining to complete exercise 7
