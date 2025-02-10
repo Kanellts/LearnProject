@@ -1,4 +1,20 @@
-- Version 6.2 is now ready, we are moving to version 7.0
+- gitignore updated
+- Version 7.5, postman errors handled, postman collection remaining
+- Update null error handled, Swagger and postman remaining to complete exercise 7
+- DELETE null error handled, only update remains
+- Version 7.5, WeatherForecastApi classes removed, all CRUD operations on API are running smoothly
+- Version 7.4, all CRUD operations are ready, some small exception handling implemented, small tweaks on swagger ans POSTMAN setup remaining
+- Version 7.3, POST and GET fully operational, DTO for POST implemented
+- Version 7.2, migration issue fixed, database is now correctly seeded and displayed in swagger through GET, still, only GET is implemented
+- Version 7.1, StudentController added, only GET is implemented
+- gitignore modified
+- Version 7.0, first steps on WebApi, project added and DI configured. Still a lot of studying and work to do to undesrtand everything in ASP.NET WebApi default program.cs
+- Merge branch 'dev-6-service-layer-and-command_ag'
+- Version 6.1, completed
+- Version 6.2, completed
+- Merge branch 'dev-6-service-layer-and-command_ag' of https://github.com/Kanellts/LearnProject into dev-6-service-layer-and-command_ag
+- Version 6.2, completed
+- Update StudentLogger.cs
 - Logger implementation and DI fixed
 - More useless code removed
 - Useless code deleted
