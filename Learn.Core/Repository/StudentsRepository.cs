@@ -24,7 +24,9 @@ namespace Learn.Core.Repository
             return student;
         }
         public async Task<Student> UpdateAsync(Student student) {
-            _context.Students.Update(student);
+            var updatedStudent = await _context.Students.FindAsync(student.Id);
+            _context.Entry<Student>(updatedStudent!).CurrentValues.SetValues(student); // ! added due to Possible null reference return warning.
+                    
             await _context.SaveChangesAsync();
             return student;
         }
