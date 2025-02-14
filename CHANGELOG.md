@@ -1,3 +1,10 @@
+- Web page is now fully functional, small css styling done, room for more improvments
+- Data from the student db are fetching correctly and displaying in the Grid preperly, CRUD operations remaining
+- Grid table finally works with ag-grid without errors. http-server displays now a default table, no connection with the database is established yet
+- Full website based on typescript and axios is app and running. Prototype based on a js notes app, still needs the table interpretaion and corrections on styling but we have something that works
+- Learn.WebAPI bin/ and obj/ properly added to gitignore
+- README.md Updated
+- Changelog Updated
 - Version 7.6, exercise 7 is now completed, checking required
 - gitignore updated
 - Version 7.5, postman errors handled, postman collection remaining
