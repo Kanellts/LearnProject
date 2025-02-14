@@ -10,81 +10,17 @@ body {
     height: 100vh;
 }
 
-.container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-
-.students_sidebar {
-    width: 400px;
-    height: 100vh;
-    border-right: 2px solid #ccc;
-    padding: 50px;
-}
-
-.students_sidebar input {
-    width: 100%;
-    margin-bottom: 10px;
-    font-size: 13px;
-    padding: 10px;
-}
-
-.students_sidebar textarea {
-    width: 100%;
-    margin-bottom: 10px;
-    font-size: 13px;
-    padding: 10px;
-    max-width: 100%;
-}
-
-.students_sidebar button {
-    margin-bottom: 10px;
-    outline: none;
-    border: none;
-    background-color: #353535;
-    color: #fff;
-    padding: 10px, 20px;
-    border-radius: 3px;
+.btn-save {
+    background-Color : lime;  
+    color : black;          
+    border : none;    
+    padding: 5px 10px;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3 ease;       
 }
 
-.students_container {
-    width: 100%;
-    padding: 50px;
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.student {
-    background-color: #eee;
-    padding: 30px;
-    width: 25%;
-    overflow: hidden;
-    margin-right: 30px;
-    margin-bottom: 30px;
-}
-
-.student h3 {
-    margin-bottom: 10px;
-}
-
-.student p {
-    overflow: auto;
-    max-height: 200px;
-    margin-bottom: 10px;
-    font-size: 13px;
-}
-
-.btn-delete {
-    background-color: #e74c3c !important;
-}
-
-.hidden {
-    display: none;
+.btn-save:hover {
+    background-color: green;
 }
