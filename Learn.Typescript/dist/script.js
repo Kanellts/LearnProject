@@ -2,6 +2,15 @@
 // import { GridApi, GridOptions, createGrid, AllCommunityModule, ModuleRegistry } from '../node_modules/ag-grid-community';
 // import '../node_modules/ag-grid-community/styles/ag-grid.css'
 // import '../node_modules/ag-grid-community/styles/ag-theme-balham.css'
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const gridOptions = {
     // Grid Options: Contains all of the Data Grid configurations
     columnDefs: [
@@ -9,23 +18,27 @@ const gridOptions = {
         { headerName: 'Name', field: 'name', sortable: true, filter: true },
         { headerName: 'Age', field: 'age', sortable: true, filter: true }
     ],
-    rowData: [
-        { id: "1", name: "Kanellos", age: "45" },
-        { id: "2", name: "Kanell ts", age: "45" },
-        { id: "3", name: "Kanellos safas", age: "45" }
-    ]
+    rowData: null
+    // [
+    //     { id: "1", name: "Kanellos", age: "45"},
+    //     { id: "2", name: "Kanell ts", age: "45"},
+    //     { id: "3", name: "Kanellos safas", age: "45"}
+    // ]
 };
 const studentsGrid = document.querySelector("#studentsGrid");
 const gridApi = agGrid.createGrid(studentsGrid, gridOptions);
-// document.addEventListener('DOMContentLoaded', async function() {
-//     if(en {
-//         new (window as any).agGrid.Grid(en gridOptions);
-//         getAllStudents();
-//     }
-//     else {
-//         console.error("AG Grid container not found");
-//     }
-// });
+function getAllStudents() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const response = yield axios.get('https://localhost:7103/api/Students');
+            gridApi.setGridOption('rowData', response.data);
+        }
+        catch (error) {
+            console.error("Error fetching students: ", error);
+        }
+    });
+}
+getAllStudents();
 // async function clearForm() {
 //     studentName!.value = '';
 //     studentAge!.value = '';

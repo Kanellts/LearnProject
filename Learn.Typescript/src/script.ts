@@ -34,26 +34,32 @@ const gridOptions = {
         { headerName: 'Name', field: 'name', sortable: true, filter: true},
         { headerName: 'Age', field: 'age', sortable: true, filter: true}
     ],
-    rowData: [
-        { id: "1", name: "Kanellos", age: "45"},
-        { id: "2", name: "Kanell ts", age: "45"},
-        { id: "3", name: "Kanellos safas", age: "45"}
-    ]
+    rowData: null
+    // [
+    //     { id: "1", name: "Kanellos", age: "45"},
+    //     { id: "2", name: "Kanell ts", age: "45"},
+    //     { id: "3", name: "Kanellos safas", age: "45"}
+    // ]
 };
 
 declare const agGrid : any;
 const studentsGrid = document.querySelector<HTMLDivElement>("#studentsGrid");
 const gridApi = agGrid.createGrid(studentsGrid, gridOptions);
 
-// document.addEventListener('DOMContentLoaded', async function() {
-//     if(en {
-//         new (window as any).agGrid.Grid(en gridOptions);
-//         getAllStudents();
-//     }
-//     else {
-//         console.error("AG Grid container not found");
-//     }
-// });
+async function getAllStudents() {
+    try {
+        const response = await axios.get<Student[]>('https://localhost:7103/api/Students');
+        gridApi.setGridOption('rowData', response.data);
+    } 
+    catch(error) {
+        console.error("Error fetching students: ", error);
+    }
+}
+
+getAllStudents();
+
+
+
 
 // async function clearForm() {
 //     studentName!.value = '';
