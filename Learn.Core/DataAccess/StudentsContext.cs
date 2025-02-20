@@ -5,17 +5,22 @@ using Microsoft.Extensions.Configuration;
 namespace Learn.Core.DataAccess;
 public class StudentsContext : DbContext
 {
-    private readonly IConfiguration _configuration;
+    private readonly IConfiguration? _configuration;
+    public StudentsContext(DbContextOptions<StudentsContext> options) : base(options)
+    {
+        // _configuration = new ConfigurationBuilder().Build();
+    }
     public StudentsContext(IConfiguration configuration)
     {
         _configuration = configuration;
     }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if(!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
+            optionsBuilder.UseNpgsql(_configuration!.GetConnectionString("DefaultConnection"));
         }
     }
 
