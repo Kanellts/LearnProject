@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Learn.Core.DataAccess.Models
+﻿namespace Learn.Core.DataAccess.Models
 {
     public class Student
     {

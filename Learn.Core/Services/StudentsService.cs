@@ -1,6 +1,5 @@
 using Learn.Core.DataAccess.Models;
 using Learn.Core.Repository;
-using Microsoft.EntityFrameworkCore;
 
 namespace Learn.Core.Services;
 

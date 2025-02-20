@@ -1,10 +1,8 @@
-using System;
 using Learn.Core.DataAccess;
 using Learn.Core.DataAccess.Models;
 using Learn.Core.Services;
 using Learn.Core.Repository;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http.Headers;
 
 namespace Learn.IntegrationTesting;
 
@@ -57,20 +55,18 @@ public class StudentServiceTests
         Assert.Equal(19, newlyUpdatedStudent?.Age);
     }
 
+    [Fact]
     public async Task DeleteStudentAsyncSuccess()
     {
         //Add a new student first to have the id available
         var testDeletedStudent = new Student{Id = 3, Name = "Jane Doe", Age = 21};
         await _studentsService.CreateStudentAsync(testDeletedStudent);
 
-        testDeletedStudent.Name = "Jane Doe Updated";
-        testDeletedStudent.Age = 22;
+        await _studentsService.DeleteStudentAsync(3);
 
-        var updatedStudent = await _studentsService.UpdateStudentAsync(testDeletedStudent);
-        var newlyUpdatedStudent = await _studentContext.Students.FindAsync(2);
+        var deletedStudent = await _studentContext.Students.FindAsync(3);
 
-        Assert.Equal("Jane Doe Updated", newlyUpdatedStudent?.Name);
-        Assert.Equal(22, newlyUpdatedStudent?.Age);
+        Assert.Null(deletedStudent);
     }
 
 }
