@@ -1,3 +1,6 @@
+- Integration tests are ready
+- IntegrationTesting Project added and tests are almost done, only delete remains
+- Changelog updated
 - Web page is now fully functional, small css styling done, room for more improvments
 - Data from the student db are fetching correctly and displaying in the Grid preperly, CRUD operations remaining
 - Grid table finally works with ag-grid without errors. http-server displays now a default table, no connection with the database is established yet
