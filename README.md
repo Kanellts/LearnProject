@@ -1,6 +1,6 @@
 # LearnProject
 
-**An exercise for building a console application with EF Core!**
+**A console-based Student Management application developed using C#, .NET and Entity Framework Core.**
 
 ### What have I learned so far?
 
