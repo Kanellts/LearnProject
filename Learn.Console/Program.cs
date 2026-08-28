@@ -24,7 +24,6 @@ class Program
             .AddSingleton<IConfiguration>(configuration)  // Προσθήκη IConfiguration
             .AddDbContext<StudentsContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))) // Ρύθμιση DbContext
-            .AddSingleton<IStudentsService, StudentsService>()
             .AddSingleton<IStudentsRepository, StudentRepository>()
             .AddSingleton<IStudentsService, StudentsService>()
             .AddLogging(configure => configure.AddConsole())  // Add Console Logger

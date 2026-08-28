@@ -1,7 +1,5 @@
 using Learn.Core.DataAccess.Models;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System.Security.Cryptography;
 
 namespace Learn.Core.Logger 
 {

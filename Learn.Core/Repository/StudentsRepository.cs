@@ -13,19 +13,28 @@ namespace Learn.Core.Repository
         public async Task<List<Student>> GetAllAsync() {
             return await _context.Students.AsNoTracking().OrderBy(s => s.Id).ToListAsync();
         }
-
+        public async Task<Student> GetByIdAsync(int studentId)
+        {
+            var student = await _context.Students.FindAsync(studentId);
+            return student!; // ! added due to Possible null reference return warning.
+        }
         public async Task<Student> CreateAsync(Student student) {
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
             return student;
         }
-        public async Task UpdateAsync(Student student) {
-            _context.Students.Update(student);
+        public async Task<Student> UpdateAsync(Student student) {
+            var updatedStudent = await _context.Students.FindAsync(student.Id);
+            _context.Entry<Student>(updatedStudent!).CurrentValues.SetValues(student); // ! added due to Possible null reference return warning.
+                    
             await _context.SaveChangesAsync();
+            return student;
         }
 
         public async Task DeleteAsync(int studentId) {
-            await _context.Students.Where(std => std.Id == studentId).ExecuteDeleteAsync(); 
+            var student = await _context.Students.FindAsync(studentId);
+            _context.Students.Remove(student!);
+            await _context.SaveChangesAsync();
         }
     }
 }

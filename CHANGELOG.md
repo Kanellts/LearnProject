@@ -1,4 +1,31 @@
-- Version 6.2 is now ready, we are moving to version 7.0
+- Integration tests are ready
+- IntegrationTesting Project added and tests are almost done, only delete remains
+- Changelog updated
+- Web page is now fully functional, small css styling done, room for more improvments
+- Data from the student db are fetching correctly and displaying in the Grid preperly, CRUD operations remaining
+- Grid table finally works with ag-grid without errors. http-server displays now a default table, no connection with the database is established yet
+- Full website based on typescript and axios is app and running. Prototype based on a js notes app, still needs the table interpretaion and corrections on styling but we have something that works
+- Learn.WebAPI bin/ and obj/ properly added to gitignore
+- README.md Updated
+- Changelog Updated
+- Version 7.6, exercise 7 is now completed, checking required
+- gitignore updated
+- Version 7.5, postman errors handled, postman collection remaining
+- Update null error handled, Swagger and postman remaining to complete exercise 7
+- DELETE null error handled, only update remains
+- Version 7.5, WeatherForecastApi classes removed, all CRUD operations on API are running smoothly
+- Version 7.4, all CRUD operations are ready, some small exception handling implemented, small tweaks on swagger ans POSTMAN setup remaining
+- Version 7.3, POST and GET fully operational, DTO for POST implemented
+- Version 7.2, migration issue fixed, database is now correctly seeded and displayed in swagger through GET, still, only GET is implemented
+- Version 7.1, StudentController added, only GET is implemented
+- gitignore modified
+- Version 7.0, first steps on WebApi, project added and DI configured. Still a lot of studying and work to do to undesrtand everything in ASP.NET WebApi default program.cs
+- Merge branch 'dev-6-service-layer-and-command_ag'
+- Version 6.1, completed
+- Version 6.2, completed
+- Merge branch 'dev-6-service-layer-and-command_ag' of https://github.com/Kanellts/LearnProject into dev-6-service-layer-and-command_ag
+- Version 6.2, completed
+- Update StudentLogger.cs
 - Logger implementation and DI fixed
 - More useless code removed
 - Useless code deleted

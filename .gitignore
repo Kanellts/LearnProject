@@ -4,5 +4,9 @@ Learn.Core/bin
 Learn.Console/obj
 Learn.Console/bin
 .vs
-Learn.Service/bin
-Learn.Service/obj
+Learn.WebApi/obj
+Learn.WebApi/bin
+Learn.WebApi/.vs
+Learn.Typescript/node_modules
+Learn.IntegrationTesting/bin
+Learn.IntegrationTesting/obj
